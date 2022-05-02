@@ -1,2 +1,6 @@
 # -*- coding: utf-8 -*-
-BLOGAPP_LABEL = 'blog'
+# urls.py setting
+BLOGAPP_URLS_LABEL = 'blog'
+
+# apps.py setting
+BLOGAPP_APPS_LABEL = 'webapp'
