@@ -1,0 +1,13 @@
+<div id = "navbar">
+
+    <div id = "navbar_menue">
+        <a href="{% url 'webapp:index' %}">home</a>
+        <a href="{% url 'webapp:about' %}">about</a>
+        <a href="{% url 'webapp:blog:blogpage' %}">blog</a>
+    </div>
+
+    <div id="navbar_now" >
+        <a>{% now 'Y-m-d H:i:s' %}</a>
+    </div>
+
+</div>

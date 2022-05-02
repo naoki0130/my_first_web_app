@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block main %}
+
+    <div id="main_contents">
+
+        <h1 class="main_contents_title">About</h1>
+        <h2 class="main_contents_sub_titile">Achievement</h2>
+        <p class="main_contents_elem_p">We have created {{ num_services|intcomma }} service so far ({% now 'Y-m-d H:i:s' %})</p>
+
+        <h2 class="main_contents_sub_titile">Our Skills</h2>
+        <div class="skills_list">
+            <ul>
+                {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                {% empty %}
+                    <li>We have not skill</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock main %}

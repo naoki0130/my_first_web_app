@@ -1,0 +1,51 @@
+/* delete hedder margin&padding */
+* {
+        margin: 0px;
+        padding: 0px;
+}
+
+
+/* navbar style */
+#navbar {
+    background-color: aquamarine;
+    display: flex;
+}
+
+#navbar #navbar_now {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+
+/* main_contents style */
+#main_contents {
+    margin: 8px;
+}
+
+#main_contents .main_contents_title, .main_contents_sub_titile {
+    margin: 10px;
+}
+
+#main_contents .main_contents_elem_p {
+    margin: 10px;
+}
+
+#main_contents .main_contents_elem_img {
+    margin: 10px;
+}
+
+#main_contents .skills_list {
+    margin: 10px;
+}
+
+#main_contents .skills_list li {
+    list-style-type: disc;
+    margin-left: 24px;
+    text-align: left;
+}
+
+
+/* footer style */
+#footer {
+    background-color: aquamarine;
+}
