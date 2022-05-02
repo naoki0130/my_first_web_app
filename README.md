@@ -178,8 +178,49 @@ urlpatterns = [
 
 ```
 
-
 </details>
+
+## 1-9. DBの設定について
+- 今回は今後使っていくことも踏まえて学習目的でpostgresqlを利用する  
+- とはいいつつもmodelでよしなにやるから気にしなくていいが
+
+### 1-9-1. pip installとsettings.pyの設定変更
+```
+pip install dj-database-url
+pip install python-dotenv
+
+load_dotenv(find_dotenv())
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600),
+}
+```
+
+### 1-9-2. postgresqlの設定
+```
+pip install psycopg2-binary
+
+psql -U postgres
+
+\password postgres
+
+CREATE DATABASE my_first_web_app_db;
+
+\q
+```
+
+### 1-9-3. viファイル設定
+```
+.envに追記
+
+DATABASE_URL=postgres://postgres:pass@localhost/my_first_web_app_db
+```
+
+### 1-9-4. superuser追加
+```
+python createsuperuser
+
+```
+
 
 # 2. その他
 ## 2-1. cmderの設定
