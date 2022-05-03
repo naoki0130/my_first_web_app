@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from . import WEBAPP_LABEL
 
+# ルーティングでindexが指定された場合
 class IndexView(TemplateView):
     template_name = "%s/index.html" % WEBAPP_LABEL
 
@@ -9,7 +10,7 @@ class IndexView(TemplateView):
         ctxt["user_name"] = "N.O"
         return ctxt
 
-
+# ルーティングでaboutが指定された場合
 class AboutView(TemplateView):
     template_name = "%s/about.html" % WEBAPP_LABEL
 

@@ -1,9 +1,13 @@
-# 1. my_first_web_app
+# my_first_web_app
 いつぞやにつくったdjangoのWebアプリがあるが, 一連の作り方を忘れたので学習をし直す  
 *本来ならcmderは不要なものだが, 他環境で同じ設定のcmderを利用したいのでおいておく  
-あくまで備忘録なので体裁は汚い, 故に暇なときに整えるかも  
 
-## 1-1. pythonの仮想環境を作る
+# 1. pythonの仮想環境を作る
+
+<details>
+<summary>pythonの仮想環境を作る</summary>
+
+## 1-1. pyenvとvenvで仮想環境構築
 一応, 仮想環境で作成して他に移せるようにしておく（やり方の復習の意味合いを込めて）  
 pyenvでバージョン管理, 今回は新しめのversionにしようと思うので, 3.9.0にする  
 venvで今回使用するパケージを突っ込んでいく  
@@ -18,24 +22,31 @@ venvで今回使用するパケージを突っ込んでいく
 8. 必要なライブラリをpip installすればOK
 9. 終了するときは`diactivate`
 
-### 1-1-1. 仮想環境のコピー
+## 1-2. 仮想環境のコピー
 .venvの内容をコピーするにはパッケージの一覧を共有する  
 
 1. `python -m pip freeze > requirements.txt`を実行
 2. コピー側で`python -m pip install -r requirements.txt`を実行
 
-### 1-1-2. 仮想環境情報のディレクトリはgitに上げるものじゃないので対象から外す
+## 1-3. 仮想環境情報のディレクトリはgitに上げるものじゃないので対象から外す
 1. `vim .gitignore`でファイル作成
 2. .gitignoreに対象ファイルやディレクトリを記載, 今回は`/.venv/`を記載
 
-## 1-2. djangoプロジェクトの始め方
+</details>
+
+# 2. djangoプロジェクトの始め方
+
+<details>
+<summary>djangoプロジェクトの始め方</summary>
+
+## 2-1. djangoでpjを作成する
 1. `django-admin startproject hoge`
 2. `cd hoge`
 3. `python manage.py runserver`
 4. これだけで作成完了, めっちゃ簡単
 
-## 1-3. gitへの初回push方法
-### 1-3-1. 何にもないrepositoryの場合
+## 2-2. gitへの初回push方法
+### 2-2-1. 何にもないrepositoryの場合
 1. READMEをつくる：`echo "# my_first_web_app" >> README.md`
 2. `git init`
 3. `git add README.md`
@@ -44,21 +55,28 @@ venvで今回使用するパケージを突っ込んでいく
 6. `git remote add origin https://github.com/naoki0130/my_first_web_app.git`
 7. `git push -u origin ブランチ名`
 
-### 1-3-2. すでにrepositoryにある場合
+### 2-2-2. すでにrepositoryにある場合
 1. `git remote add origin https://github.com/naoki0130/my_first_web_app.git`
 2. `git branch -M ブランチ名`
 3. `git push -u origin ブランチ名`
 
-### 1-3-3. Gitでユーザー名とメールアドレスを設定する方法
+### 2-2-3. Gitでユーザー名とメールアドレスを設定する方法
 1. git config --global user.name "ユーザー名"
 2. git config --global user.email メールアドレス
 3. pjごとにしたい場合は, globalの部分をlocalにすればOK
 
-## 1-4. djangoでアプリ作成
+</details>
+
+# 3. djangoで開発
+
+<details>
+<summary>djangoで開発</summary>
+
+## 3.1 djangoでアプリを作成する
 1. `python manage.py startapp webapp`
 2. ディレクトリができているはず, htmlを配置する場合は`templates`ディレクトリと`urls.py`を作成する
 
-## 1-5. djangoで開発：ざっくり概要
+## 3-2. djangoで開発：ざっくり概要
 1. setting.pyにおいて, ALLOWED_HOSTSを`*`にする
 2. LANGUAGE_CODEを`ja`にする
 3. TIME_ZONEを`Asia/Tokyo`にする
@@ -70,52 +88,19 @@ venvで今回使用するパケージを突っ込んでいく
 9. これで大体OK
 10. そのうちwhitenoiseで静的ファイルを管理する, コマンドは`python manage.py collectstatic`：[参考サイト](`whitenoise.middleware.WhiteNoiseMiddleware`,)
 
-## 1-6. djangoにおけるそれぞれのpyファイルの役割
-### 1-6-1. PJ側
+## 3-3. djangoにおけるそれぞれのpyファイルの役割
+pj側とapp側でそれぞれ示す  
+
+### 3-3-1. PJ側
 - setting.py：設定もろもろを記載する
 - urls.py：PJの大本となるURLを設定する, その下のアプリのURLを紐づけて扱える
 
-### 1-6-2. app側
+### 3-3-2. app側
 - models.py：DBに突っ込むようなデータ情報をクラスで表現する, DBのやり取りをこのファイルの定義から勝手にやってくれるためSQLを書く必要なし
 - urls.py：クライアントからのリクエストをルーティングしてくれてviewsのなんの関数やクラスを見に行くか指定する, アプリのURLを設定する, URL変更のメンテを楽にするためにnameを指定することを推奨
 - views.py：urls.pyから呼ばれて必要に応じてDBとのやり取りをおこないhtmlを表示させる
 
-## 1-7. herokuでデプロイ
-なにやらGUIでデプロイができないので, CLIでの方法を記す(GUIだとめちゃくちゃ簡単)  
-デプロイの詳細は[このサイトでOK](https://devcenter.heroku.com/ja/articles/git)  
-
-### 1-7-1. なんか躓いたこと
-pythonのversionによってデプロイできない  
-が, winのpyenvでは対象versionをInstallできないジレンマ  
-とりあえず, pyenv側は3.10.0a1でruntime.txtにheroku対応の3.10.2を記載でうまくいった  
-#### 1-7-1-1. 追記
-procfileの位置が悪くてうまく起動できない事象に遭遇  
-ちゃんとPJ配下に作成する  
-
-#### 1-7-1-2. 追記２
-結局の原因はPJがネストしすぎ  
-PJ直下でvenv環境つくって諸々の手順を踏めばOK  
-
-### 1-7-2. 最初にすること
-0. requirements.txtとruntime.txtがないとバグる可能性大
-1. 'heroku login'
-2. 下記の新規か既存の設定をする
-3. deployする
-
-### 1-7-3. 新規
-1. 'heroku create -a hogeapp'
-2. アプリと合ってるか確認：'git remote -v'
-
-### 1-7-4. 既存
-1. 'heroku git:remote -a hogeapp'
-
-### 1-7-5. herokuリモート名の変更
-1. 'git remote rename hoge hoge-rename'
-
-### 1-7-6. コードのデプロイ
-1. 'git push heroku main'
-
-## 1-8. templateの管理について
+## 3-4. templateの管理について
 - templatesはPJ直下で管理する  
 - templates配下にアプリごとのディレクトリを切り, base.html以外を配置する  
 - アプリごとのurls.pyにはapp_nameをつける(htmlで`urls hoge:fuga`的な記述を可能にするため)
@@ -180,11 +165,11 @@ urlpatterns = [
 
 </details>
 
-## 1-9. DBの設定について
+## 3-5. DBの設定について
 - 今回は今後使っていくことも踏まえて学習目的でpostgresqlを利用する  
 - とはいいつつもmodelでよしなにやるから気にしなくていいが
 
-### 1-9-1. pip installとsettings.pyの設定変更
+### 3-5-1. pip installとsettings.pyの設定変更
 ```
 pip install dj-database-url
 pip install python-dotenv
@@ -195,7 +180,7 @@ DATABASES = {
 }
 ```
 
-### 1-9-2. postgresqlの設定
+### 3-5-2. postgresqlの設定
 ```
 pip install psycopg2-binary
 
@@ -208,26 +193,92 @@ CREATE DATABASE my_first_web_app_db;
 \q
 ```
 
-### 1-9-3. viファイル設定
+### 3-5-3. viファイル設定
 ```
 .envに追記
 
 DATABASE_URL=postgres://postgres:pass@localhost/my_first_web_app_db
 ```
 
-### 1-9-4. superuser追加
+### 3-5-4. superuser追加
 ```
-python createsuperuser
-
+python manage.py createsuperuser
 ```
 
+### 3-5-5. herokuでdbの設定
+```
+python manage.py  migrate
 
-# 2. その他
-## 2-1. cmderの設定
+python manage.py createsuperuser
+```
+
+### 3-5-6. models.pyの内容をdbに反映させる
+```
+python manage.py makemigrations hoge
+
+python manage.py makemigrations hoge/fuga
+
+python manage.py migrate
+```
+
+### 3-5-7. アプリごとでadmin.pyに追加したmodelを追記する（テーブル追加）
+```
+@admin.register(models.hoge)
+class HogeAdmin(admin.ModelAdmin):
+  pass
+```
+
+</details>
+
+
+# 4. herokuでデプロイ
+
+<details>
+<summary>herokuでデプロイ</summary>
+
+## 4.1 herokuでデプロイするには
+なにやらGUIでデプロイができないので, CLIでの方法を記す(GUIだとめちゃくちゃ簡単)  
+デプロイの詳細は[このサイトでOK](https://devcenter.heroku.com/ja/articles/git)  
+
+## 4-2. なんか躓いたこと
+pythonのversionによってデプロイできない  
+が, winのpyenvでは対象versionをInstallできないジレンマ  
+とりあえず, pyenv側は3.10.0a1でruntime.txtにheroku対応の3.10.2を記載でうまくいった  
+### 4-2-1. 追記
+procfileの位置が悪くてうまく起動できない事象に遭遇  
+ちゃんとPJ配下に作成する  
+
+### 4-2-2. 追記２
+結局の原因はPJがネストしすぎ  
+PJ直下でvenv環境つくって諸々の手順を踏めばOK  
+
+## 4-3. 最初にすること
+0. requirements.txtとruntime.txtがないとバグる可能性大
+1. `heroku login`
+2. 下記の新規か既存の設定をする
+3. deployする
+
+### 4-3-1. 新規
+1. `heroku create -a hogeapp`
+2. アプリと合ってるか確認：`git remote -v`
+
+### 4-3-2. 既存
+1. `heroku git:remote -a hogeapp`
+
+### 4-3-3. herokuリモート名の変更
+1. `git remote rename hoge hoge-rename`
+
+### 4-3-4. コードのデプロイ
+1. `git push heroku main`
+
+</details>
+
+# 5. その他
+## 5-1. cmderの設定
 cmderが使い慣れているので設定する  
 参考サイトは[ここである](https://qiita.com/thrzn41/items/7dd3b1ec5e50bae9f03b)  
 
-## 2-2. vscodeの設定について
+## 5-2. vscodeの設定について
 自宅PCの馴染んだ環境を再現するために設定情報を共有  
 といってもcmderくらいだが  
 

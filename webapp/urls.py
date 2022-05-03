@@ -2,6 +2,7 @@ from unicodedata import name
 from django.urls import path, include
 from webapp.views import *
 
+# includeされたアプリ側の urls.py で指定するプロジェクトにおける名前空間:webapp
 app_name = 'webapp'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
