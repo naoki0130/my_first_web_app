@@ -1,6 +1,7 @@
 from unicodedata import category
 from django.db import models
 from django.test import tag
+from django.urls import reverse_lazy
 
 # カテゴリテーブル
 class Category(models.Model):
@@ -76,4 +77,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        # 新規作成後にcreateのurlへ飛ばないようにリンクを指定する
+        return reverse_lazy('webapp:blog:index')
 

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <h3>Please Check contents!</h3>
+    <p>Are you sure you want to delete <b>{{ object.title }}</b>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="delete" class="btn btn-danger">
+        <a class="btn btn-primary" href="{% url 'webapp:blog:index' %}" role="button">Back Post List</a>
+    </form>
+
+{% endblock main %}

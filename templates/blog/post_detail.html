@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <h2 >Post Detail</h2>
+    <h3>{{ object.title }}</h3>
+    <p><time>{{ object.updated }}</time></p>
+
+    <div>
+        {{ object.body }}
+    </div>
+
+    <a class="btn btn-primary mt-4" href="{% url 'webapp:blog:update' object.id %}" role="button">Edit</a>
+    <a class="btn btn-danger mt-4" href="{% url 'webapp:blog:delete' object.id %}" role="button">Delete</a>
+    <a class="btn btn-primary mt-4" href="{% url 'webapp:blog:index' %}" role="button">Back Post List</a>
+
+{% endblock main %}

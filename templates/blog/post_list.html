@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <h2 >Post List</h2>
+    <p >Anyone can post now!</p>
+
+    {% for post in object_list %}
+        <li><a href="{% url 'webapp:blog:detail' post.id %}">{{ post.title }}</a></li>
+    {% endfor %}
+
+    <a class="btn btn-primary mt-4" href="{% url 'webapp:blog:create' %}" role="button">New Post</a>
+
+{% endblock main %}

@@ -1,13 +1,45 @@
-<div id = "navbar">
+<nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color: #e3f2fd;">
+
+    <a class="navbar-brand" href="{% url 'webapp:index' %}">My_first_web_app</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:about' %}">About</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:blog:index' %}">Blog</a>
+            </li>
+        </ul>
+    
+        <form class="form-inline my-2 my-lg-0">
+            <div class="pr-2" >
+                <a>{% now 'Y-m-d H:i:s' %}</a>
+            </div>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    
+    </div>
+
+</nav>
+
+<!-- <div id = "navbar">
 
     <div id = "navbar_menue">
         <a href="{% url 'webapp:index' %}">home</a>
         <a href="{% url 'webapp:about' %}">about</a>
-        <a href="{% url 'webapp:blog:blogpage' %}">blog</a>
+        <a href="{% url 'webapp:blog:index' %}">blog</a>
     </div>
 
     <div id="navbar_now" >
         <a>{% now 'Y-m-d H:i:s' %}</a>
     </div>
 
-</div>
+</div> -->

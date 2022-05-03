@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <h2 >Post Form</h2>
+    <h3>New Post!</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit" class="btn btn-primary">
+        <a class="btn btn-primary" href="{% url 'webapp:blog:index' %}" role="button">Back Post List</a>
+    </form>
+
+{% endblock main %}
