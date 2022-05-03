@@ -1,6 +1,4 @@
-from unicodedata import category
 from django.db import models
-from django.test import tag
 from django.urls import reverse_lazy
 
 # カテゴリテーブル
@@ -66,7 +64,6 @@ class Post(models.Model):
     # カテゴリ：FK
     category = models.ForeignKey(
         Category,
-        on_delete=models.CASCADE,
     )
 
     # タグ：MtoM
