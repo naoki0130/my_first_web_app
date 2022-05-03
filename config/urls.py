@@ -1,4 +1,3 @@
-from tkinter.font import names
 from django.contrib import admin
 from django.urls import path, include
 

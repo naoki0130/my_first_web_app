@@ -64,7 +64,7 @@ class Post(models.Model):
     # カテゴリ：FK
     category = models.ForeignKey(
         Category,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     # タグ：MtoM
