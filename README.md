@@ -274,6 +274,10 @@ PJ直下でvenv環境つくって諸々の手順を踏めばOK
 </details>
 
 # 5. その他
+
+<details>
+<summary>その他</summary>
+
 ## 5-1. cmderの設定
 cmderが使い慣れているので設定する  
 参考サイトは[ここである](https://qiita.com/thrzn41/items/7dd3b1ec5e50bae9f03b)  
@@ -467,4 +471,6 @@ cmderが使い慣れているので設定する
 
 }
 ```
+</details>
+    
 </details>
