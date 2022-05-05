@@ -1,14 +1,73 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block main %}
 
-    <h2 >Post List</h2>
-    <p >Anyone can post now!</p>
+    <div class="row">
 
-    {% for post in object_list %}
-        <li><a href="{% url 'webapp:blog:detail' post.id %}">{{ post.title }}</a></li>
-    {% endfor %}
+        <div class="container-fluid col">
 
-    <a class="btn btn-primary mt-4" href="{% url 'webapp:blog:create' %}" role="button">New Post</a>
+            <div class="text-block">
+
+                <div class="section-heading">
+
+                    <p>投稿するにはログインが必要です</p>
+                    <form action="{% url 'webapp:blog:create' %}">
+                        <button type="submit" class="btn btn-primary slide m-2">New Post <i
+                                class="fa fa-caret-right"></i> </button>
+                    </form>
+
+                    {% for post in object_list %}
+                    <h2><a href="{% url 'webapp:blog:detail' post.id %}">{{ post.title }} </a></h2>
+                    <p>written by <b>{{ post.author }}</b></p>
+                    <p class="subheading">{{ post.updated }}</p>
+
+                    <p>{{ post.body | linebreaksbr }}</p>
+
+                    <hr>
+                    {% endfor %}
+
+                    <ul class="pagination">
+                        <!-- 前へ の部分 -->
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        <!-- 数字の部分 -->
+                        {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+
+                        <!-- 次へ の部分 -->
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="image-holder col-lg-5 d-flex align-items-center">
+                <img src="{% static 'blog/img/cerasus.jpg' %}" alt="cerasus.jpg" width="450" height="750">
+        </div>
+
+    </div>
+
+
 
 {% endblock main %}

@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import BlogView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
+from .views import (
+    BlogView, 
+    PostDetailView, 
+    PostCreateView, 
+    PostUpdateView, 
+    PostDeleteView
+)
 
 # includeされたアプリ側の urls.py で指定するプロジェクトにおける名前空間:blog
 app_name = 'blog'

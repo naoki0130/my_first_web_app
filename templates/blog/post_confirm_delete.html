@@ -7,8 +7,8 @@
 
     <form method="post">
         {% csrf_token %}
-        <input type="submit" value="delete" class="btn btn-danger">
-        <a class="btn btn-primary" href="{% url 'webapp:blog:index' %}" role="button">Back Post List</a>
+        <input type="submit" value="Delete" class="btn btn-danger">
+        <a class="btn btn-secondary" href="{% url 'webapp:blog:detail' object.id %}" role="button">Back Post Detail</a>
     </form>
 
 {% endblock main %}

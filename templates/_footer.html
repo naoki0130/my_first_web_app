@@ -1,11 +1,22 @@
+{% load static %}
+
 <div class="card mt-4">
     <div class="card-header" style="background-color: #e3f2fd;">
-        Featured
-    </div>
-    <div class="card-body">
-    <blockquote class="blockquote mb-0">
-        <p>Create My first web app.</p>
-        <footer class="blockquote-footer">Copyright 2022-{% now 'Y' %}</footer>
-    </blockquote>
+        Thank you for comming!
     </div>
 </div>
+
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-1 my-1">
+    <p class="col-md-4 mb-0 text-muted">&copy; 2022-{% now 'Y' %} Company, Inc</p>
+
+    <a href="{% url 'webapp:index' %}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <img src="{% static 'webapp/img/django_python_icon.jpg' %}" alt="django_python_icon.jpg" width="70" height="70">
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="{% url 'webapp:index' %}" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="{% url 'webapp:about' %}" class="nav-link px-2 text-muted">About</a></li>
+        <li class="nav-item"><a href="{% url 'webapp:blog:index' %}" class="nav-link px-2 text-muted">Blog</a></li>
+    </ul>
+    </footer>

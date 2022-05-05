@@ -6,10 +6,19 @@
     <h3>New Post!</h3>
 
     <form method="post">
+
         {% csrf_token %}
-        {{ form.as_p }}
+
+        {% include 'includes/form.html' %}
         <input type="submit" value="submit" class="btn btn-primary">
-        <a class="btn btn-primary" href="{% url 'webapp:blog:index' %}" role="button">Back Post List</a>
+
+        
+        {% if view_type == "create" %}
+            <a class="btn btn-secondary" href="{% url 'webapp:blog:index' %}" role="button">Back Post List</a>
+        {% elif view_type == "update" %}
+            <a class="btn btn-secondary" href="{% url 'webapp:blog:detail' object.id %}" role="button">Back Post Detail</a>
+        {% endif %}
+
     </form>
 
 {% endblock main %}

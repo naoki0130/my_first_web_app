@@ -8,4 +8,5 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('about/', AboutView.as_view(), name='about'),
     path('blog/', include('webapp.blog.urls', namespace='blog'), name='blog'),
+    path('account/', include('webapp.account.urls', namespace='account'), name='account'),
 ]

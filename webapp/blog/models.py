@@ -1,5 +1,7 @@
+import imp
 from django.db import models
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 
 # カテゴリテーブル
 class Category(models.Model):
@@ -44,6 +46,14 @@ class Post(models.Model):
     updated = models.DateTimeField(
         auto_now=True,
         editable=False,
+        blank=False,
+        null=False,
+    )
+
+    # 著者
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
         blank=False,
         null=False,
     )
