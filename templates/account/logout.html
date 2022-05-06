@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="card w-25 mx-auto p-3">
+
+    <div class="mx-auto">
+        <main class="form-signin">
+            <form method="POST">
+
+                <div class="text-center">
+                    <img class="mb-4" src="{% static 'account/img/mydog2.jpg' %}" alt="mydog2.jpg" width="140" height="160">
+                </div>
+                
+                <h1 class="h3 mb-3 fw-normal">Logged out!</h1>
+                
+                <div class="text-center">
+                    <a href="{% url 'webapp:account:login' %}"><button type="button" class="btn btn-primary me-2 mr-1">Login</button></a>
+                    <a href="{% url 'webapp:index' %}"><button type="button" class="btn btn-secondary me-2 mr-1">Return Home</button></a>
+                </div>
+
+            </form>
+        </main>
+    </div>
+
+</div>
+
+
+{% endblock main %}

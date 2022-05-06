@@ -1,5 +1,6 @@
-from operator import is_
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -23,9 +24,11 @@ class BlogView(ListView):
     # paginationの設定
     paginate_by = 4
 
-    # 取得データのハンドリング
-    # def get_queryset(self):
-    #     return Post.objects.order_by('-updated')
+    # ログインユーザの情報表示
+    def get_context_data(self):
+        ctxt = super().get_context_data()
+        ctxt["login_user"] = self.request.user
+        return ctxt
 
 # ルーティングでblog/detailが指定された場合
 class PostDetailView(DetailView):
@@ -36,7 +39,7 @@ class PostDetailView(DetailView):
 
 # ルーティングでblog/createが指定された場合
 # post新規作成画面
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = "%s/post_form.html" % BLOGAPP_URLS_LABEL
 
     # models.pyで定義したmodelをセット
@@ -58,7 +61,7 @@ class PostCreateView(CreateView):
 
 # ルーティングでblog/updateが指定された場合
 # post編集画面
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "%s/post_form.html" % BLOGAPP_URLS_LABEL
 
     # models.pyで定義したmodelをセット
@@ -73,21 +76,23 @@ class PostUpdateView(UpdateView):
         ctxt["view_type"] = "update"
         return ctxt
 
-    # ログインユーザを著者と設定
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    # ログインユーザ以外は編集できないようにする
+    # 著者以外は編集できないようにする
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
             return True
         return False
 
+    # 著者以外のユーザは削除NG, 確認画面へ遷移する
+    def handle_no_permission(self):
+        '''to:[login,Profile] will signup or create profiles'''
+        if self.raise_exception:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return render(self.request, template_name="%s/post_auth_rejection.html" % BLOGAPP_URLS_LABEL)
+
 # ルーティングでblog/deleteが指定された場合
 # post編集画面
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = "%s/post_confirm_delete.html" % BLOGAPP_URLS_LABEL
 
     # models.pyで定義したmodelをセット
@@ -95,3 +100,17 @@ class PostDeleteView(DeleteView):
 
     # 削除後に移動する先
     success_url = "/%s"  % BLOGAPP_URLS_LABEL
+
+    # ログインユーザ以外は削除できないようにする
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+    # 著者以外のユーザは削除NG, 確認画面へ遷移する
+    def handle_no_permission(self):
+        '''to:[login,Profile] will signup or create profiles'''
+        if self.raise_exception:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return render(self.request, template_name="%s/post_auth_rejection.html" % BLOGAPP_URLS_LABEL)

@@ -5,15 +5,13 @@
 
     <div>
 
-        {% if user_name == "N.O" %}
-            <h1>Admin User! Welcome!</h1>
-        {% elif user_name %}
+        {% if user.is_authenticated %}
             <h1>{{ user_name }}! Welcome!</h1>
         {% else %}
-            <h1>Anonymous! Welcome!</h1>
+            <h1>Welcome! My_first_web_app. Please Log in!</h1>
         {% endif %}
 
-        <img src="{% static 'webapp/img/mydog.jpg' %}" alt="my_dog_picture">
+        <img src="{% static 'webapp/img/mydog.jpg' %}" alt="mydog.jpg">
 
     </div>
 

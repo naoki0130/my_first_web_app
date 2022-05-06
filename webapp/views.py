@@ -7,7 +7,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self):
         ctxt = super().get_context_data()
-        ctxt["user_name"] = "N.O"
+        ctxt["user_name"] = self.request.user
         return ctxt
 
 # ルーティングでaboutが指定された場合

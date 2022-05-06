@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="card w-25 mx-auto p-3">
+
+    <div class="mx-auto">
+        <main class="form-signin">
+            <form method="POST">
+
+            <div class="text-center">
+                <img class="mb-4" src="{% static 'account/img/mydog2.jpg' %}" alt="mydog2.jpg" width="140" height="160">
+            </div>
+            
+            <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+    
+            {% csrf_token %}
+            <table  class="ui celled table table table-hover" >
+                <tr><td>お名前</td><td>{{form.cleaned_data.username}}</td></tr>
+                <tr><td>パスワード</td><td>********</td></tr>
+            </table>
+            {% include 'includes/form_hidden.html' %}
+
+            <div class="pr-2" ></div>
+                <button class="btn btn-primary" type="submit" name="next" value="back">Back</button>
+                <button class="btn btn-primary" type="submit" name="next" value="regist">Regist</button>
+            </div>
+
+            </form>
+        </main>
+    </div>
+
+</div>
+
+
+{% endblock main %}

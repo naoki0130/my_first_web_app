@@ -11,16 +11,26 @@
 
                 <div class="section-heading">
 
-                    <p>投稿するにはログインが必要です</p>
-                    <form action="{% url 'webapp:blog:create' %}">
-                        <button type="submit" class="btn btn-primary slide m-2">New Post <i
-                                class="fa fa-caret-right"></i> </button>
-                    </form>
+                    
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'webapp:blog:create' %}">
+                            <button type="submit" class="btn btn-primary slide m-2">New Post <i
+                                    class="fa fa-caret-right"></i> </button>
+                        </form>
+                    {% else %}
+                        <p>投稿するにはログインが必要です</p>
+                        <form action="{% url 'webapp:blog:create' %}">
+                            <button type="submit" class="btn btn-primary slide m-2">New Post <i
+                                    class="fa fa-caret-right"></i> </button>
+                        </form>
+                    {% endif %}
 
                     {% for post in object_list %}
-                    <h2><a href="{% url 'webapp:blog:detail' post.id %}">{{ post.title }} </a></h2>
-                    <p>written by <b>{{ post.author }}</b></p>
-                    <p class="subheading">{{ post.updated }}</p>
+                    <div class="d-flex flex-row bd-highlight">
+                        <div class="pr-3 bd-highlight"><h2><a href="{% url 'webapp:blog:detail' post.id %}">{{ post.title }} </a></h2></div>
+                        <div class="bd-highlight align-self-center">written by <b>{{ post.author }}</b></div>
+                    </div>
+                    <p>{{ post.updated | date:'Y-m-d P'}}</p>
 
                     <p>{{ post.body | linebreaksbr }}</p>
 

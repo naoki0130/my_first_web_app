@@ -273,16 +273,28 @@ PJ直下でvenv環境つくって諸々の手順を踏めばOK
 
 </details>
 
-# 5. その他
+# 5. tips
 
 <details>
 <summary>その他</summary>
 
-## 5-1. cmderの設定
+## 5-1. ユーザ状態によって～させない系で便利なもの
+- django.contrib.auth.mixinsをつかう
+  - LoginRequiredMixinでログインしてないとNGにさせる
+  - UserPassesTestMixinで該当ユーザ以外は操作NGにする
+
+</details>
+
+# その他
+
+<details>
+<summary>その他</summary>
+
+## cmderの設定
 cmderが使い慣れているので設定する  
 参考サイトは[ここである](https://qiita.com/thrzn41/items/7dd3b1ec5e50bae9f03b)  
 
-## 5-2. vscodeの設定について
+## vscodeの設定について
 自宅PCの馴染んだ環境を再現するために設定情報を共有  
 といってもcmderくらいだが  
 

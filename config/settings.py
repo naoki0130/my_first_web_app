@@ -150,3 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 NUMBER_GROUPING = 3
 
 # APPEND_SLASH = True
+
+# ログイン周りの設定
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'webapp:account:login'

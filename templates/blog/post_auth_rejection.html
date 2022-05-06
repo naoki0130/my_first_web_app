@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <h3>Your editing is not allowed. Please Check Login User!</h3>
+    <p>Only the author can edit.</p>
+
+    <a class="btn btn-secondary" href="{% url 'webapp:blog:index' %}" role="button">Back Post List</a>
+
+{% endblock main %}
