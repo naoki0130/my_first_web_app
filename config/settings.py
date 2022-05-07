@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-
+import cloudinary
 from pkg_resources import find_distributions
 import dj_database_url
 from dotenv import(
@@ -167,8 +167,6 @@ CLOUDINARY_STORAGE = {
     'API_KEY': env('CLOUDINARY_API_KEY'),
     'API_SECRET': env('CLOUDINARY_API_SECRET')
 }
-
-import cloudinary
 
 cloudinary.config(
     cloud_name='hbomfvo4a',
