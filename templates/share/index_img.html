@@ -18,7 +18,7 @@
 
     <p>{{ post.uploaded | date:'Y-m-d P'}}</p>
     
-    {% cloudinary post.image.url width=500 height=300 %}
+    {% cloudinary post.image.url %}
 
     <hr>
 {% endfor %}
