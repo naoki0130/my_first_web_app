@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.urls import path, include
 from webapp.views import *
 
@@ -9,4 +8,5 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('blog/', include('webapp.blog.urls', namespace='blog'), name='blog'),
     path('account/', include('webapp.account.urls', namespace='account'), name='account'),
+    path('share/', include('webapp.share.urls', namespace='share'), name='share'),
 ]

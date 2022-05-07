@@ -6,25 +6,23 @@
 <div class="card w-25 mx-auto p-3">
 
     <div class="mx-auto">
-        <main class="form-signin">
-            <form method="POST">
+        <form method="POST">
 
-                <div class="text-center">
-                    <img class="mb-4" src="{% static 'account/img/mydog2.jpg' %}" alt="mydog2.jpg" width="140" height="160">
-                </div>
-                
-                <h1 class="h3 mb-3 fw-normal">Please Log in</h1>
+            <div class="text-center">
+                <img class="mb-4" src="{% static 'account/img/mydog2.jpg' %}" alt="mydog2.jpg" width="140" height="160">
+            </div>
+            
+            <h1 class="h3 mb-3 fw-normal">Please Log in</h1>
 
-                {% csrf_token %}
+            {% csrf_token %}
 
-                {% include 'includes/form.html' %}
-                
-                <div class="text-center">
-                    <button class="btn btn-primary" type="submit">Log In</button>
-                </div>
+            {% include 'includes/form.html' %}
+            
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">Log In</button>
+            </div>
 
-            </form>
-        </main>
+        </form>
     </div>
 
 </div>

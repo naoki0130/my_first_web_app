@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+
+{% block main %}
+
+<h1 class="h3 mb-3 fw-normal">Share image!</h1>
+<a href="{% url 'webapp:share:upload_img' %}"><button type="button" class="btn btn-primary m-2">Upload Image</button></a>
+
+<hr>
+
+<h1 class="h3 mb-3 fw-normal">Share Image List</h1>
+
+{% for post in object_list %}
+    <div class="d-flex flex-row bd-highlight">
+        <div class="pr-3 bd-highlight"><p class="h2"> {{ post.title }}</p></div>
+        <div class="bd-highlight align-self-center">uploaded by <b>{{ post.uploaded_user }}</b></div>
+    </div>
+
+    <p>{{ post.uploaded | date:'Y-m-d P'}}</p>
+    
+    {% cloudinary post.image.url width=500 height=300 %}
+
+    <hr>
+{% endfor %}
+
+
+
+{% endblock main %}

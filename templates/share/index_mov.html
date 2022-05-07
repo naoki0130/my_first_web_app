@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+
+{% block main %}
+
+<h1 class="h3 mb-3 fw-normal">Share Movie!</h1>
+<a href="{% url 'webapp:share:upload_mov' %}"><button type="button" class="btn btn-primary m-2">Upload Movie</button></a>
+
+<hr>
+
+<h1 class="h3 mb-3 fw-normal">Share Movie List</h1>
+
+{% for post in object_list %}
+    <div class="d-flex flex-row bd-highlight">
+        <div class="pr-3 bd-highlight"><p class="h2"> {{ post.title }}</p></div>
+        <div class="bd-highlight align-self-center">uploaded by <b>{{ post.uploaded_user }}</b></div>
+    </div>
+
+    <p class="m-0">{{ post.uploaded | date:'Y-m-d P'}}</p>
+    
+    <video width='640' height= '400' controls>
+        <source src="{{ post.video.url }}">
+    </video>
+
+    <hr>
+{% endfor %}
+
+{% endblock main %}

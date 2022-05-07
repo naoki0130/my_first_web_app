@@ -19,6 +19,7 @@ from dotenv import(
     find_dotenv, 
     load_dotenv,
 )
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,6 +51,9 @@ INSTALLED_APPS = [
     'webapp',
     'webapp.blog',
     'webapp.account',
+    'webapp.share',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +158,22 @@ NUMBER_GROUPING = 3
 # ログイン周りの設定
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'webapp:account:login'
+
+# cloudinaryの設定
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, '.env'))
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hbomfvo4a',
+    'API_KEY': env('CLOUDINARY_API_KEY'),
+    'API_SECRET': env('CLOUDINARY_API_SECRET')
+}
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name='hbomfvo4a',
+    api_key=env('CLOUDINARY_API_KEY'),
+    api_secret=env('CLOUDINARY_API_SECRET')
+)
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

@@ -13,6 +13,7 @@
 
                     
                     {% if user.is_authenticated %}
+                        <h1 class="h3 mb-3 fw-normal">Post Now!</h1>
                         <form action="{% url 'webapp:blog:create' %}">
                             <button type="submit" class="btn btn-primary slide m-2">New Post <i
                                     class="fa fa-caret-right"></i> </button>
@@ -24,6 +25,8 @@
                                     class="fa fa-caret-right"></i> </button>
                         </form>
                     {% endif %}
+
+                    <hr>
 
                     {% for post in object_list %}
                     <div class="d-flex flex-row bd-highlight">

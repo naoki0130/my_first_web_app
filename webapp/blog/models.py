@@ -1,4 +1,3 @@
-import imp
 from django.db import models
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
