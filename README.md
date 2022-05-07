@@ -362,6 +362,7 @@ cmderが使い慣れているので設定する
 ## vscodeの設定について
 自宅PCの馴染んだ環境を再現するために設定情報を共有  
 といってもcmderくらいだが  
+＊追記：importのワーニングが出るときは設定でextraPathsを調べてsite-packagesのディレクトリを追加する  
 
 <details>
 <summary>setting</summary>
