@@ -270,6 +270,9 @@ PJ直下でvenv環境つくって諸々の手順を踏めばOK
 
 ### 4-3-4. コードのデプロイ
 1. `git push heroku main`
+    
+## 4-4. envで秘匿したいAPIキーなどを利用する場合
+- envはgitに上げるわけにはいかないので, herokuで動かなくなるが, `heroku config:add SECRET_KEY="hoge"`で設定してやればOK
 
 </details>
 
