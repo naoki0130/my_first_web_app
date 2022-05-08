@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import cloudinary
-from pkg_resources import find_distributions
 import dj_database_url
 from dotenv import(
     find_dotenv, 

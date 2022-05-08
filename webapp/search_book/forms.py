@@ -1,4 +1,3 @@
-from tkinter import Label
 from django import forms
 
 class SearchForm(forms.Form):
