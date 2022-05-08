@@ -6,13 +6,36 @@
     <div>
 
         {% if user.is_authenticated %}
-            <h1>{{ user_name }}! Welcome!</h1>
+            <h1>{{ user_name }}! Welcome My_first_web_app!</h1>
         {% else %}
-            <h1>Welcome! My_first_web_app. Please Log in!</h1>
+            <h1>Welcome My_first_web_app! Please Log in!</h1>
         {% endif %}
 
-        <img src="{% static 'webapp/img/mydog.jpg' %}" alt="mydog.jpg">
+        <hr>
 
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row m-3">
+
+            <div class="col-md">
+                <div class="card container border-primary mt-5" style="width: 18rem;">
+                    <h1 class="h2 mb-3 fw-normal">Today's Weather</h1>
+                    <h1 class="h3 mb-3 fw-normal text-center">{{ weather_dic.city }}</h1>
+                    <img src="http://openweathermap.org/img/w/{{ weather_dic.icon }}.png" alt="{{ weather_dic.icon }}.png" class="mx-auto" style="width: 100px; height: 100px;">
+                    <h1 class="h3 mb-3 fw-normal">現在の気温 : {{ weather_dic.temperature_now | floatformat:1 }}℃</h1>
+                    <h1 class="h3 mb-3 fw-normal">最高気温 : {{ weather_dic.temperature_max | floatformat:1 }}℃</h1>
+                    <h1 class="h3 mb-3 fw-normal">最低気温 : {{ weather_dic.temperature_min | floatformat:1 }}℃</h1>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <img src="{% static 'webapp/img/mydog.jpg' %}" alt="mydog.jpg">
+            </div>
+
+        </div>
+    
     </div>
 
 {% endblock main %}

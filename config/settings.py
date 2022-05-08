@@ -36,7 +36,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +51,7 @@ INSTALLED_APPS = [
     'webapp.blog',
     'webapp.account',
     'webapp.share',
+    'webapp.search_book',
     'cloudinary',
     'cloudinary_storage',
 ]
@@ -167,6 +167,10 @@ CLOUDINARY_STORAGE = {
     'API_KEY': env('CLOUDINARY_API_KEY'),
     'API_SECRET': env('CLOUDINARY_API_SECRET')
 }
+
+# APIの設定
+RAKUTEN_API_KYE = env('RAKUTEN_API_KEY')
+WEATHER_API_KEY = env('WEATHER_API_KEY')
 
 cloudinary.config(
     cloud_name='hbomfvo4a',

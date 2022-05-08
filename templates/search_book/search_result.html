@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block main %}
+
+<div class="d-flex flex-row bd-highlight"></div>
+    <h1 class="h3 mb-3 fw-normal">Search Results : {{ keyword }} </h1>
+    <a href="{% url 'webapp:search_book:index' %}"><button type="button" class="btn btn-secondary m-1">Back Search Book</button></a>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row flex-sm-row-reverse m-3 p-5">
+
+        {% for book in book_data %}
+
+                <div class="col-md mb-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ book.image }}" alt="{{ book.image }}" class="card-img-top card-thum">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <a href="{% url 'webapp:search_book:detail' keyword book.isbn %}" class="btn btn-primary">Book Detail</a>
+                        </div>
+                    </div>
+                </div>
+
+        {% empty %}
+
+            <p class="h4">Search Results : 0 hits</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock main %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block main %}
+
+<h1 class="h3 mb-3 fw-normal">Search Book by rakuten API</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="d-flex flex-row w-25">
+        {% render_field form.title class="form-control m-1" placeholder="Search from keywords" %}
+        <button type="submit" class="btn btn-primary m-1 ">Search</button>
+    </div>
+</form>
+
+{% endblock main %}

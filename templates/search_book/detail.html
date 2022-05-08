@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="d-flex flex-row bd-highlight"></div>
+    <h1 class="h3 mb-3 fw-normal">Book Detail</h1>
+    <!-- <a href="{{request.META.HTTP_REFERER}}"><button type="button" class="btn btn-secondary m-1">Back Search Results</button></a> -->
+    <form method="post" action="{% url 'webapp:search_book:index' %}">
+        {% csrf_token %}
+            <input type="hidden" name="title" class="form-control m-1" required="" id="id_title" value="{{ book_data.keyword }}">
+            <button type="submit" class="btn btn-secondary m-1 ">Back Search Results</button>
+    </form>
+</div>
+
+<div class="my-5 m-5">
+    <div class="row">
+
+        <div class="col-md-6 text_center">
+            <img src="{{ book_data.image }}" alt="{{ book_data.image }}" class="img-fluid">
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body px-2 py-1">
+                    <div class="p-4">
+                        <h3>{{ book_data.title }}</h3>
+                        <p class="mb-3">
+                            {{ book_data.author }}
+                        </p>
+
+                        {% if not book_data.reviewCount == 0  %}
+
+                            <div class="d-flex flex-row">
+                                <div class="star-rating" style="position: relative; font-size: 20px; word-wrap: normal!important;">
+                                    <div class="star-rating-front text-warning" 
+                                        style="width: {{ book_data.average }}%; position: absolute; top: 0; left: 0; overflow: hidden;"
+                                    >
+                                        ★★★★★
+                                    </div>
+                                    <div class="star-rating-back" style="color: #CCCCCC;">★★★★★</div>
+                                </div>
+                                <div class="average ml-2 text-danger" style="font-size: 20px; font-weight: bold;">
+                                    {{ book_data.reviewAverage|floatformat:2 }}
+                                </div>
+                                <div class="d-flex align-items-center ml-2">
+                                    {{ book_data.reviewCount }}件
+                                </div>
+                            </div>
+
+                        {% else %}
+
+                        <p>Nothing Review</p>
+
+                        {% endif %}
+
+                        <p class="mt-3">Price : <span class="text-danger font-weight-bold h3">{{ book_data.itemPrice }}円</span></p>
+                        <a href="{{ book_data.itemUrl }}" class="btn btn-primary">Rakuten Shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% if book_data.itemCaption %}
+        <div class="mb-5">
+            <h5>Explanation</h5>
+            <hr>
+            <p>{{ book_data.itemCaption }}</p>
+        </div>
+    {% endif %}
+
+    <div class="mb-5">
+        <h5>Infomation</h5>
+        <hr>
+        <p>Sales Date : {{ book_data.salesDate }}</p>
+        <p>Author : {{ book_data.author }}</p>
+        <p>PublisherName : {{ book_data.publisherName }}</p>
+        <p>Size : {{ book_data.size }}</p>
+        <p>Isbn Code : {{ book_data.isbn }}</p>
+    </div>
+
+
+</div>
+
+{% endblock main %}
